@@ -1,3 +1,6 @@
+#swp
+.*.sw??
+
 # Prerequisites
 *.d
 
