@@ -1,6 +1,7 @@
 # Recursive-Descent-Parser-and-Optimizer
 This is a recursive descent parser and optimizer written in the C language. The grammar that the parser accepts is defined as:
-<
+
+"
 <program> ::= <stmt list> .
 <stmt list> ::= <stmt> <morestmts>
 <morestmts> ::= ; <stmt list> | epsilon 
@@ -15,7 +16,7 @@ This is a recursive descent parser and optimizer written in the C language. The 
 <digit>
 <variable> ::= a | b | c | d | e
 <digit> ::= 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9
- >
+"
  
 Examples of valid tinyL programs:
 !a;!b;c=+3*ab;d=+c1;#d.
