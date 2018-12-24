@@ -3,19 +3,19 @@ This is a recursive descent parser and optimizer written in the C language. The 
 
 
 \<program> ::= \<stmt list> . <br>
-\<stmt list> ::= \<stmt> \<morestmts>
-\<morestmts> ::= ; \<stmt list> | epsilon 
-\<stmt> ::= \<assign> | \<read> | \<print>
-\<assign> ::= \<variable> = \<expr>
-\<read> ::= ! \<variable>
-\<print> ::= # \<variable>
-\<expr> ::= + \<expr> \<expr> |
-- \<expr> \<expr> |
-* \<expr> \<expr> |
-\<variable> |
-\<digit>
-\<variable> ::= a | b | c | d | e
-\<digit> ::= 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9
+\<stmt list> ::= \<stmt> \<morestmts><br>
+\<morestmts> ::= ; \<stmt list> | epsilon <br>
+\<stmt> ::= \<assign> | \<read> | \<print><br>
+\<assign> ::= \<variable> = \<expr><br>
+\<read> ::= ! \<variable><br>
+\<print> ::= # \<variable><br>
+\<expr> ::= + \<expr> \<expr> |<br>
+- \<expr> \<expr> |<br>
+* \<expr> \<expr> |<br>
+\<variable> |<br>
+\<digit><br>
+\<variable> ::= a | b | c | d | e<br>
+\<digit> ::= 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9<br>
 
  
 Examples of valid tinyL programs:
