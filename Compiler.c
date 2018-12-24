@@ -76,6 +76,7 @@ static int digit();
 /*************************************************************************/
 static int digit()
 {
+	printf("token digit %d\n", token);
 	int reg;
 
 	if (!is_digit(token)) {
@@ -92,21 +93,22 @@ static int variable()
 {
 	/* YOUR CODE GOES HERE */
 
+	printf("token var %d\n", token);
 	int reg;
 	if(!is_identifier(token)){
 		ERROR("Expected identifier\n");
 		exit(EXIT_FAILURE);
 	}
-	reg = next_register();
-	CodeGen(LOAD, reg, token, EMPTY_FIELD);
-	next_token();
-	return reg;
+	return token;
 }
 
 static int expr()
 {
 	int reg, left_reg, right_reg;
 
+
+
+	printf("token expr %d\n", token);
 	switch (token) {
 	case '+':
 		next_token();
@@ -156,16 +158,17 @@ static int expr()
 
 static void assign()
 {
-	int left_reg;
-	int tok;
+	int reg, left_reg;
+
 	/* YOUR CODE GOES HERE */
+	printf("token assign %d\n", token);
 	if(is_identifier(token)){
-		tok = token;
 		next_token();
 		if(token == '='){
 			next_token();
 			left_reg = expr();
-			CodeGen(STORE, tok, left_reg, EMPTY_FIELD);
+			reg = next_register();
+			CodeGen(LOAD, reg, left_reg, EMPTY_FIELD);
 			return;
 		}else{
 			ERROR("Symbol %c unknown\n", token);
@@ -181,6 +184,7 @@ static void assign()
 static void read()
 {
 	int reg;
+	printf("token read %d\n", token);
 	/* YOUR CODE GOES HERE */
 	if(token == '!'){
 		next_token();
@@ -197,6 +201,7 @@ static void read()
 
 static void print()
 {
+	printf("token print %d\n", token);
 	/* YOUR CODE GOES HERE */
 	if(token == '#'){
 		next_token();
@@ -212,6 +217,7 @@ static void print()
 static void stmt()
 {
 	/* YOUR CODE GOES HERE */
+	printf("token stmt %d\n", token);
 	switch(token){
 		case 'a':
 		case 'b':
@@ -235,6 +241,7 @@ static void stmt()
 
 static void morestmts()
 {
+	printf("token morestmts %d\n", token);
 	/* YOUR CODE GOES HERE */
 	if(token == ';'){
 		next_token();
@@ -244,6 +251,7 @@ static void morestmts()
 
 static void stmtlist()
 {
+	printf("token stmtlist %d\n", token);
 	/* YOUR CODE GOES HERE */
 	stmt();
 	morestmts();
@@ -251,6 +259,7 @@ static void stmtlist()
 
 static void program()
 {
+	printf("token program %d\n", token);
 	stmtlist();
 	next_token();
 	/* YOUR CODE GOES HERE */

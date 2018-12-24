@@ -1,0 +1,21 @@
+
+			// loop through LL and check every node + two nodes after
+			while (counter < 3){
+				// Found first LOADI
+				if(counter == 0){
+					if(curr_pos->opcode == LOADI){
+						counter++;
+					}else{
+						cur_pos = curr_pos->next;
+						counter = 0;
+					}	
+				}
+				if(counter == 1){
+					if(curr_pos->next->opcode == LOADI){
+						counter++;
+					}else{
+						cur_pos = curr_pos->next;
+						counter = 0;
+					}
+				}
+			}

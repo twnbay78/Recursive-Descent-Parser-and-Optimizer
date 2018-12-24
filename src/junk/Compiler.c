@@ -90,23 +90,20 @@ static int digit()
 
 static int variable()
 {
-	/* YOUR CODE GOES HERE */
+		
 
-	int reg;
-	if(!is_identifier(token)){
-		ERROR("Expected identifier\n");
+	if (!is_identifier(token)) {
+		ERROR("Expected digit\n");
 		exit(EXIT_FAILURE);
 	}
-	reg = next_register();
-	CodeGen(LOAD, reg, token, EMPTY_FIELD);
+	char tok = token;
 	next_token();
-	return reg;
+	return tok;
 }
 
 static int expr()
 {
 	int reg, left_reg, right_reg;
-
 	switch (token) {
 	case '+':
 		next_token();
@@ -115,20 +112,19 @@ static int expr()
 		reg = next_register();
 		CodeGen(ADD, reg, left_reg, right_reg);
 		return reg;
-		/* YOUR CODE GOES HERE */
 	case '-':
 		next_token();
 		left_reg = expr();
 		right_reg = expr();
 		reg = next_register();
-		CodeGen(SUB, reg, left_reg, right_reg);
+		CodeGen(SUB,reg,left_reg,right_reg);
 		return reg;
 	case '*':
 		next_token();
 		left_reg = expr();
 		right_reg = expr();
 		reg = next_register();
-		CodeGen(MUL, reg, left_reg, right_reg);
+		CodeGen(MUL,reg,left_reg,right_reg);
 		return reg;
 	case '0':
 	case '1':
@@ -146,33 +142,37 @@ static int expr()
 	case 'c':
 	case 'd':
 	case 'e':
+	case 'f':
 		return variable();
 	default:
 		ERROR("Symbol %c unknown\n", token);
 		exit(EXIT_FAILURE);
-		break;
 	}
 }
 
 static void assign()
 {
-	int left_reg;
-	int tok;
 	/* YOUR CODE GOES HERE */
-	if(is_identifier(token)){
-		tok = token;
-		next_token();
-		if(token == '='){
+	int reg, left_reg;
+	if(is_identifier(token))
+	{
+		reg = variable();
+
+		if(token == '=')
+		{
 			next_token();
 			left_reg = expr();
-			CodeGen(STORE, tok, left_reg, EMPTY_FIELD);
+			CodeGen(STORE, reg,left_reg,EMPTY_FIELD);
 			return;
-		}else{
-			ERROR("Symbol %c unknown\n", token);
-			exit(EXIT_FAILURE);
 		}
-	}else {
-		ERROR("Symbol %c unknown\n", token);
+		else
+		{
+			ERROR("Symbol %c unknown\n", token);
+		exit(EXIT_FAILURE);
+		}
+	}
+	else{
+		ERROR("Symbols %c unknown\n", token);
 		exit(EXIT_FAILURE);
 	}
 
@@ -180,84 +180,83 @@ static void assign()
 
 static void read()
 {
-	int reg;
 	/* YOUR CODE GOES HERE */
-	if(token == '!'){
+	if(token == '!')
+	{
 		next_token();
-		if(is_identifier(token)){
-			reg = next_register();
-			CodeGen(LOAD, reg, token, EMPTY_FIELD);
+			if(is_identifier(token))
+			{
+			CodeGen(READ, token,EMPTY_FIELD,EMPTY_FIELD);
 			return;
-		}
+			}
 	}
+
 	ERROR("Symbol %c unknown\n", token);
-	exit(EXIT_FAILURE);
+		exit(EXIT_FAILURE);
+
 
 }
 
 static void print()
 {
 	/* YOUR CODE GOES HERE */
-	if(token == '#'){
+		if(token == '#')
+	{
 		next_token();
-		if(is_identifier(token)){
-			CodeGen(WRITE, token, EMPTY_FIELD, EMPTY_FIELD);
+			CodeGen(WRITE, variable(),EMPTY_FIELD,EMPTY_FIELD);
 			return;
-		}
 	}
+	
 	ERROR("Symbol %c unknown\n", token);
-	exit(EXIT_FAILURE);
+		exit(EXIT_FAILURE);
 }
 
 static void stmt()
 {
 	/* YOUR CODE GOES HERE */
 	switch(token){
-		case 'a':
-		case 'b':
-		case 'c':
-		case 'd':
-		case 'e':
-			assign();
-			break;
 		case '!':
-			read();
-			break;
+				return read();
 		case '#':
-			print();
-			break;
+				return print();
 		default:
-			ERROR("Symbol %c unknown\n", token);
-			exit(EXIT_FAILURE);
-			break;
-	}
+				return assign(); 
+		}
+	
 }
 
 static void morestmts()
 {
 	/* YOUR CODE GOES HERE */
-	if(token == ';'){
 		next_token();
+		if(token == '.')
+			return;
+
 		return stmtlist();
-	}
+		ERROR("Symbols %c unknown\n", token);
+		exit(EXIT_FAILURE);
 }
 
 static void stmtlist()
 {
 	/* YOUR CODE GOES HERE */
 	stmt();
-	morestmts();
+	if(token == ';')
+	{
+		morestmts();
+	}
+	
+	
 }
 
 static void program()
 {
-	stmtlist();
-	next_token();
 	/* YOUR CODE GOES HERE */
+	stmtlist();
 	if (token != '.') {
 		ERROR("Program error.  Current input symbol is %c\n", token);
 		exit(EXIT_FAILURE);
-	}
+	};
 }
 
 /*************************************************************************/
