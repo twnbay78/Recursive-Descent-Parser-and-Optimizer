@@ -2,20 +2,20 @@
 This is a recursive descent parser and optimizer written in the C language. The grammar that the parser accepts is defined as:
 
 
-\<program> ::= <stmt list> .
-<stmt list> ::= <stmt> <morestmts>
-<morestmts> ::= ; <stmt list> | epsilon 
-<stmt> ::= <assign> | <read> | <print>
-<assign> ::= <variable> = <expr>
-<read> ::= ! <variable>
-<print> ::= # <variable>
-<expr> ::= + <expr> <expr> |
-- <expr> <expr> |
-* <expr> <expr> |
-<variable> |
-<digit>
-<variable> ::= a | b | c | d | e
-<digit> ::= 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9
+\<program> ::= \<stmt list> .
+\<stmt list> ::= \<stmt> \<morestmts>
+\<morestmts> ::= ; \<stmt list> | epsilon 
+\<stmt> ::= \<assign> | \<read> | \<print>
+\<assign> ::= \<variable> = \<expr>
+\<read> ::= ! \<variable>
+\<print> ::= # \<variable>
+\<expr> ::= + \<expr> \<expr> |
+- \<expr> \<expr> |
+* \<expr> \<expr> |
+\<variable> |
+\<digit>
+\<variable> ::= a | b | c | d | e
+\<digit> ::= 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9
 
  
 Examples of valid tinyL programs:
