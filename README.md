@@ -18,9 +18,9 @@ This is a recursive descent parser and optimizer written in the C language. The 
 \<digit> ::= 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9<br>
 
  
-Examples of valid tinyL programs:
+Examples of valid tinyL programs:<br>
 !a;!b;c=+3*ab;d=+c1;#d. <br>
-!a;b=-*+1+2a58;#b.
+!a;b=-*+1+2a58;#b.<br>
 
 Stage 1: The program creates assembled RISC instructions according to the input language, which simulates the compile stage. 
 
