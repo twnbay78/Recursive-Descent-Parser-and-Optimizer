@@ -19,7 +19,7 @@ This is a recursive descent parser and optimizer written in the C language. The 
 
  
 Examples of valid tinyL programs:
-!a;!b;c=+3*ab;d=+c1;#d.
+!a;!b;c=+3*ab;d=+c1;#d. <br>
 !a;b=-*+1+2a58;#b.
 
 Stage 1: The program creates assembled RISC instructions according to the input language, which simulates the compile stage. 
