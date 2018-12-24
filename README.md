@@ -29,35 +29,35 @@ Stage 2: This program then takes the assembled RISC instructions and optimizes t
 A constant propagation looks for a pattern of the following
 form:
 
-LOADI Rx #c1
-LOADI Ry #c2
-op Rz Rx Ry
+LOADI Rx #c1<br>
+LOADI Ry #c2<br>
+op Rz Rx Ry<br>
 
 If this pattern is detected, the value of constants c1 op c2 is computed as constant c3,
 where op can be addition ADD, subtraction SUB, or multiplication MUL. The original sequence
 of three instructions is then replaced by a single instruction of the form:
 
-LOADI Rz #c3
+LOADI Rz #c3<br>
 
 If no pattern is detected, the window is moved one instruction down the list of instructions.
 In the case of a successful match and code replacement, the rst instruction of the new window
 is set to the instruction that immediately follows the three instructions of the pattern in the
 original, unoptimized code.
 
-LOADI Ra #1
-LOADI Rb #1
-ADD Rc Ra Rb
-LOADI Rd #2
-LOADI Re #2
-ADD Rf Re Rd
-ADD Rg Rf Rc
+LOADI Ra #1<br>
+LOADI Rb #1<br>
+ADD Rc Ra Rb<br>
+LOADI Rd #2<br>
+LOADI Re #2<br>
+ADD Rf Re Rd<br>
+ADD Rg Rf Rc<br>
 
 After one pass, it is optimized to
 
-LOADI Rc #2
-LOADI Rf #4
-ADD Rg Rf Rc
+LOADI Rc #2<br>
+LOADI Rf #4<br>
+ADD Rg Rf Rc<br>
 
 It can be further optimized to
 
-LOADI Rg #6
+LOADI Rg #6<br>
