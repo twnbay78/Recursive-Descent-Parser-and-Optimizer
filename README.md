@@ -10,8 +10,8 @@ This is a recursive descent parser and optimizer written in the C language. The 
 \<read> ::= ! \<variable><br>
 \<print> ::= # \<variable><br>
 \<expr> ::= + \<expr> \<expr> |<br>
-- \<expr> \<expr> |<br>
-* \<expr> \<expr> |<br>
+\- \<expr> \<expr> |<br>
+\* \<expr> \<expr> |<br>
 \<variable> |<br>
 \<digit><br>
 \<variable> ::= a | b | c | d | e<br>
