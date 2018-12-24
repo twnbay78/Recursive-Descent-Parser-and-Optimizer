@@ -2,7 +2,7 @@
 This is a recursive descent parser and optimizer written in the C language. The grammar that the parser accepts is defined as:
 
 
-'<program>' ::= <stmt list> .
+\<program> ::= <stmt list> .
 <stmt list> ::= <stmt> <morestmts>
 <morestmts> ::= ; <stmt list> | epsilon 
 <stmt> ::= <assign> | <read> | <print>
